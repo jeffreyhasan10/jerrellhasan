@@ -1,0 +1,72 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:wght@300;400;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 34 33% 96%;
+    --foreground: 210 29% 24%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 24%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 24%;
+
+    --primary: 210 29% 24%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 37 24% 84%;
+    --secondary-foreground: 210 29% 24%;
+
+    --muted: 37 16% 50%;
+    --muted-foreground: 210 29% 60%;
+
+    --accent: 37 34% 64%;
+    --accent-foreground: 210 29% 24%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 37 24% 84%;
+    --input: 37 24% 84%;
+    --ring: 37 34% 64%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-beige text-midnight font-merriweather;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat font-bold;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .image-hover {
+    @apply overflow-hidden;
+  }
+  
+  .image-hover img {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  
+  .image-hover:hover img {
+    @apply scale-105;
+  }
+  
+  .lightbox-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center;
+  }
+}
