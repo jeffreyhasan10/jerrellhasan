@@ -76,7 +76,7 @@ export const projects: Project[] = [
     thumbnail:
       "/assets/Commercial/Doctor faculties of perpetual university/Doctor-1.JPG",
     images: Array.from(
-      { length: 4 },
+      { length: 21 },
       (_, i) =>
         `/assets/Commercial/Doctor faculties of perpetual university/Doctor-${
           i + 1
@@ -342,7 +342,7 @@ export const assetDirectoryMap = {
     "Jazzie doc": { prefix: "Jazzie-", count: 11, hasSuffix: false, extension: "jpg" },
     "Doctor faculties of perpetual university": {
       prefix: "Doctor-",
-      count: 4,
+      count: 21,
       hasSuffix: false,
       extension: "JPG"
     },
