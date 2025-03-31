@@ -30,7 +30,7 @@ const generateImagePaths = (
 
 // Function to get extension from file path
 const getExtension = (path: string): string => {
-  const parts = path.split('.');
+  const parts = path.split(".");
   return parts[parts.length - 1].toLowerCase();
 };
 
@@ -42,15 +42,19 @@ const normalizeImagePath = (path: string): string => {
 
 export const projects: Project[] = [
   {
-    id: "mtg-shirts",
-    title: "MTG Shirts",
-    category: "commercial",
+    id: "kristina",
+    title: "Kristina",
+    category: "portraits",
     description:
-      "Bringing Magic: The Gathering's fantastical world into wearable art through vibrant product photography that captures both detail and imagination.",
-    thumbnail: "/assets/Commercial/Mtg shirts/MTG-1.jpg",
-    images: Array.from(
-      { length: 4 },
-      (_, i) => `/assets/Commercial/Mtg shirts/MTG-${i + 1}.jpg`
+      "Soft natural light, urban aesthetics, and storytelling elements come together in portraits that blend technical precision with emotional depth.",
+    thumbnail: "/assets/Portraits/Kristina/Kristina (1).JPG",
+    images: generateImagePaths(
+      "Portraits",
+      "Kristina",
+      "Kristina (",
+      11,
+      true,
+      "JPG"
     ),
     featured: true,
   },
@@ -183,7 +187,14 @@ export const projects: Project[] = [
     description:
       "Capturing the joy and intimacy of birthday celebrations through a documentary approach that preserves genuine moments of happiness.",
     thumbnail: "/assets/Events/Sana bday/Sana (1).jpg",
-    images: generateImagePaths("Events", "Sana bday", "Sana (", 14, true, "jpg"),
+    images: generateImagePaths(
+      "Events",
+      "Sana bday",
+      "Sana (",
+      14,
+      true,
+      "jpg"
+    ),
   },
   {
     id: "holi",
@@ -215,21 +226,16 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "kristina",
-    title: "Kristina",
-    category: "portraits",
+    id: "mtg-shirts",
+    title: "MTG Shirts",
+    category: "commercial",
     description:
-      "Soft natural light, urban aesthetics, and storytelling elements come together in portraits that blend technical precision with emotional depth.",
-    thumbnail: "/assets/Portraits/Kristina/Kristina (1).JPG",
-    images: generateImagePaths(
-      "Portraits",
-      "Kristina",
-      "Kristina (",
-      11,
-      true,
-      "JPG"
+      "Bringing Magic: The Gathering's fantastical world into wearable art through vibrant product photography that captures both detail and imagination.",
+    thumbnail: "/assets/Commercial/Mtg shirts/MTG-1.jpg",
+    images: Array.from(
+      { length: 4 },
+      (_, i) => `/assets/Commercial/Mtg shirts/MTG-${i + 1}.jpg`
     ),
-    featured: true,
   },
   {
     id: "bagavat",
@@ -246,19 +252,20 @@ export const projects: Project[] = [
       true,
       "JPG"
     ),
+    featured: true,
   },
 ];
 
 // Function to normalize file extensions for frontend display
 export const getProjectsWithNormalizedPaths = () => {
-  return projects.map(project => {
+  return projects.map((project) => {
     // Create a new object to avoid modifying the original data
     return {
       ...project,
       // Add a srcset with multiple possible extension formats
       thumbnail: project.thumbnail,
       // For each image, add fallback extensions
-      images: project.images.map(img => img)
+      images: project.images.map((img) => img),
     };
   });
 };
@@ -266,16 +273,12 @@ export const getProjectsWithNormalizedPaths = () => {
 // Function to create a srcset with multiple extension options
 export const createImageSrcSet = (path: string) => {
   // Extract the base path without extension
-  const basePath = path.substring(0, path.lastIndexOf('.'));
-  
+  const basePath = path.substring(0, path.lastIndexOf("."));
+
   // Create srcset with multiple extensions
   return {
     original: path,
-    srcSet: [
-      `${basePath}.jpg`,
-      `${basePath}.JPG`,
-      `${basePath}.jpeg`
-    ]
+    srcSet: [`${basePath}.jpg`, `${basePath}.JPG`, `${basePath}.jpeg`],
   };
 };
 
@@ -286,18 +289,18 @@ export const getImageWithFallback = (imagePath: string) => {
     onError: (e: any) => {
       const imgElement = e.target;
       const currentSrc = imgElement.src;
-      
+
       // Try different extensions if the current one fails
-      if (currentSrc.toLowerCase().endsWith('.jpg')) {
-        imgElement.src = currentSrc.replace(/\.jpg$/i, '.JPG');
-      } else if (currentSrc.toLowerCase().endsWith('.jpg')) {
-        imgElement.src = currentSrc.replace(/\.jpg$/i, '.jpeg');
-      } else if (currentSrc.toLowerCase().endsWith('.jpeg')) {
-        imgElement.src = currentSrc.replace(/\.jpeg$/i, '.JPG');
-      } else if (currentSrc.toLowerCase().endsWith('.jpg')) {
-        imgElement.src = currentSrc.replace(/\.jpg$/i, '.png');
+      if (currentSrc.toLowerCase().endsWith(".jpg")) {
+        imgElement.src = currentSrc.replace(/\.jpg$/i, ".JPG");
+      } else if (currentSrc.toLowerCase().endsWith(".jpg")) {
+        imgElement.src = currentSrc.replace(/\.jpg$/i, ".jpeg");
+      } else if (currentSrc.toLowerCase().endsWith(".jpeg")) {
+        imgElement.src = currentSrc.replace(/\.jpeg$/i, ".JPG");
+      } else if (currentSrc.toLowerCase().endsWith(".jpg")) {
+        imgElement.src = currentSrc.replace(/\.jpg$/i, ".png");
       }
-    }
+    },
   };
 };
 
@@ -338,34 +341,89 @@ export const categories = [
 // Asset directory map for reference or additional functionality
 export const assetDirectoryMap = {
   Commercial: {
-    "Mtg shirts": { prefix: "MTG-", count: 4, hasSuffix: false, extension: "jpg" },
-    "Jazzie doc": { prefix: "Jazzie-", count: 11, hasSuffix: false, extension: "jpg" },
+    "Mtg shirts": {
+      prefix: "MTG-",
+      count: 4,
+      hasSuffix: false,
+      extension: "jpg",
+    },
+    "Jazzie doc": {
+      prefix: "Jazzie-",
+      count: 11,
+      hasSuffix: false,
+      extension: "jpg",
+    },
     "Doctor faculties of perpetual university": {
       prefix: "Doctor-",
       count: 21,
       hasSuffix: false,
-      extension: "JPG"
+      extension: "JPG",
     },
-    "MTG company": { prefix: "MTG-", count: 12, hasSuffix: false, extension: "JPG" },
-    "Mentoring program": { prefix: "Mentoring (", count: 24, hasSuffix: true, extension: "JPG" },
-    "Medical mission": { prefix: "Medical (", count: 19, hasSuffix: true, extension: "JPG" },
+    "MTG company": {
+      prefix: "MTG-",
+      count: 12,
+      hasSuffix: false,
+      extension: "JPG",
+    },
+    "Mentoring program": {
+      prefix: "Mentoring (",
+      count: 24,
+      hasSuffix: true,
+      extension: "JPG",
+    },
+    "Medical mission": {
+      prefix: "Medical (",
+      count: 19,
+      hasSuffix: true,
+      extension: "JPG",
+    },
     "International hangout": {
       prefix: "International (",
       count: 22,
       hasSuffix: true,
-      extension: "JPG"
+      extension: "JPG",
     },
-    Graduation: { prefix: "Graduation (", count: 7, hasSuffix: true, extension: "JPG" },
-    "ISA meeting": { prefix: "ISA (", count: 22, hasSuffix: true, extension: "jpeg" },
+    Graduation: {
+      prefix: "Graduation (",
+      count: 7,
+      hasSuffix: true,
+      extension: "JPG",
+    },
+    "ISA meeting": {
+      prefix: "ISA (",
+      count: 22,
+      hasSuffix: true,
+      extension: "jpeg",
+    },
   },
   Events: {
-    "Sana bday": { prefix: "Sana (", count: 14, hasSuffix: true, extension: "jpg" },
-     Holi: { prefix: "Holi (", count: 28, hasSuffix: true, extension: "JPG" },
-    "Uni week": { prefix: "Uni (", count: 36, hasSuffix: true, extension: "JPG" },
+    "Sana bday": {
+      prefix: "Sana (",
+      count: 14,
+      hasSuffix: true,
+      extension: "jpg",
+    },
+    Holi: { prefix: "Holi (", count: 28, hasSuffix: true, extension: "JPG" },
+    "Uni week": {
+      prefix: "Uni (",
+      count: 36,
+      hasSuffix: true,
+      extension: "JPG",
+    },
   },
   Portraits: {
     Arjun: { prefix: "Arjun (", count: 2, hasSuffix: true, extension: "JPG" },
-    Kristina: { prefix: "Kristina (", count: 11, hasSuffix: true, extension: "JPG" },
-    Bagavat: { prefix: "Bagavat (", count: 5, hasSuffix: true, extension: "JPG" },
+    Kristina: {
+      prefix: "Kristina (",
+      count: 11,
+      hasSuffix: true,
+      extension: "JPG",
+    },
+    Bagavat: {
+      prefix: "Bagavat (",
+      count: 5,
+      hasSuffix: true,
+      extension: "JPG",
+    },
   },
 };
